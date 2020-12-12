@@ -24,7 +24,8 @@ import {
   JPEGSequenceEncoder,
   PNGSequenceEncoder,
   PreviewEncoder,
-  GifEncoder
+  GifEncoder,
+  MP4Encoder
 } from '@hubble.gl/core';
 import EncoderDropdown from './encoder-dropdown';
 
@@ -48,7 +49,9 @@ export default function BasicControls({
       adapter.render(PNGSequenceEncoder, encoderSettings, () => setBusy(false), updateCamera);
     } else if (encoder === 'gif') {
       adapter.render(GifEncoder, encoderSettings, () => setBusy(false), updateCamera);
-    }
+    } else if (encoder === 'mp4') {
+      adapter.render(MP4Encoder, encoderSettings, () => setBusy(false), updateCamera);
+    } 
 
     setBusy(true);
   };

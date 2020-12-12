@@ -29,6 +29,7 @@ export default function EncoderDropdown({disabled, encoder, setEncoder}) {
       <option value="jpeg">JPEG Sequence</option>
       <option value="png">PNG Sequence</option>
       <option value="gif">GIF</option>
+      <option value="mp4">mp4</option>
     </select>
   );
 }

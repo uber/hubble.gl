@@ -2599,6 +2599,11 @@
   dependencies:
     "@types/node" ">= 8"
 
+"@open-wc/webpack-import-meta-loader@^0.4.7":
+  version "0.4.7"
+  resolved "https://registry.yarnpkg.com/@open-wc/webpack-import-meta-loader/-/webpack-import-meta-loader-0.4.7.tgz#d8212640a386a66bf06a2a4c101936467839b5a1"
+  integrity sha512-F3d1EHRckk2+ZpgEEAgVITp8BU9DYLBhKOhNMREeQ1BwILRIhrt+V1bebpnd0Mz595jzd7Yh1wSibLsXibkCpg==
+
 "@popmotion/easing@^1.0.1":
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/@popmotion/easing/-/easing-1.0.2.tgz#17d925c45b4bf44189e5a38038d149df42d8c0b4"
@@ -8780,6 +8785,11 @@ move-concurrently@^1.0.1:
     mkdirp "^0.5.1"
     rimraf "^2.5.4"
     run-queue "^1.0.3"
+
+mp4-h264@^1.0.7:
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/mp4-h264/-/mp4-h264-1.0.7.tgz#1aa53ce6c07fe801c5443edc0a573ebca4eff2fd"
+  integrity sha512-75w9WK/Z90OUvA8O3HR315xZnHh6fLdq3OoD3f1gibPn2HOODrbRoHhXNOxhHxJFAu5DSwyyK7lYx1k4UtjpsA==
 
 ms@2.0.0:
   version "2.0.0"

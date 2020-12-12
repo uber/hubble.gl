@@ -36,6 +36,7 @@
     "@loaders.gl/core": "^2.1.6",
     "@loaders.gl/video": "2.2.0-alpha.1",
     "downloadjs": "^1.4.7",
+    "mp4-h264": "^1.0.7",
     "popmotion": "^8.6.10",
     "webm-writer": "^0.2.2"
   }

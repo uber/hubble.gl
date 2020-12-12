@@ -29,7 +29,8 @@ const encoderSettings = {
   },
   gif: {
     sampleInterval: 1000
-  }
+  },
+  mp4: {}
 };
 
 const aaEffect = new PostProcessEffect(fxaa, {});

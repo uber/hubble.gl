@@ -13,6 +13,10 @@ module.exports = env => {
       plugins: ['@babel/plugin-proposal-class-properties'],
       presets: ['@babel/preset-env', '@babel/preset-react']
     }
+  },
+  {
+    test: /\.js$/,
+    loader: '@open-wc/webpack-import-meta-loader',
   });
   return config;
 };

@@ -27,3 +27,4 @@ export {default as StreamEncoder} from './video/stream-encoder';
 export {default as FrameEncoder} from './frame-encoder';
 export {default as PreviewEncoder} from './utils/preview-encoder';
 export {default as GifEncoder} from './video/gif-encoder';
+export {default as MP4Encoder} from './video/mp4-encoder';

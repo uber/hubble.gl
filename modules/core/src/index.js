@@ -28,7 +28,8 @@ export {
   WebMEncoder,
   FrameEncoder,
   PreviewEncoder,
-  GifEncoder
+  GifEncoder,
+  MP4Encoder
 } from './encoders';
 
 export {

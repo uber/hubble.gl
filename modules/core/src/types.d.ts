@@ -40,6 +40,10 @@ interface EncoderSettings {
     width: number,
     height: number
   },
+  mp4: {
+    width: number,
+    height: number
+  }
 }
 
 interface DeckSceneParams {
