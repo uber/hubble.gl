@@ -32,7 +32,8 @@ import {
   ItemSelector,
   Slider,
   LoadingSpinner,
-  ModalTabsFactory
+  ModalTabsFactory,
+  Play
 } from 'kepler.gl/components';
 
 const IconButton = styled(Button)`
@@ -50,7 +51,8 @@ const KEPLER_UI = {
   ItemSelector,
   Slider,
   LoadingSpinner,
-  ModalTabsFactory
+  ModalTabsFactory,
+  Play
 };
 
 // Redux stores/actions

@@ -23,8 +23,9 @@ import DeckGL from '@deck.gl/react';
 import {StaticMap} from 'react-map-gl';
 import {MapboxLayer} from '@deck.gl/mapbox';
 
-import {deckStyle} from './constants';
+import {deckStyle, timelineControlStyle, timelinePlayButtonStyle} from './constants';
 import {RenderingSpinner} from './rendering-spinner';
+import {WithKeplerUI} from '../inject-kepler';
 
 export class ExportVideoPanelPreview extends Component {
   constructor(props) {
@@ -178,7 +179,15 @@ export class ExportVideoPanelPreview extends Component {
   }
 
   render() {
-    const {exportVideoWidth, rendering, viewState, setViewState, adapter, durationMs} = this.props;
+    const {
+      exportVideoWidth,
+      rendering,
+      viewState,
+      setViewState,
+      adapter,
+      durationMs,
+      handlePreviewVideo
+    } = this.props;
     const {glContext, mapStyle} = this.state;
 
     const containerStyle = {
@@ -188,42 +197,49 @@ export class ExportVideoPanelPreview extends Component {
     };
 
     return (
-      <>
-        <div id="deck-canvas" style={containerStyle}>
-          <DeckGL
-            ref={this.deckRef}
-            viewState={viewState}
-            id="hubblegl-overlay"
-            layers={this.createLayers()}
-            style={deckStyle}
-            controller={true}
-            glOptions={{stencil: true}}
-            onWebGLInitialized={gl => this.setState({glContext: gl})}
-            onViewStateChange={setViewState}
-            // onClick={visStateActions.onLayerClick}
-            {...adapter.getProps({deckRef: this.deckRef, setReady: () => {}})}
-          >
-            {glContext && (
-              <StaticMap
-                ref={this.mapRef}
-                mapStyle={mapStyle}
-                preventStyleDiffing={true}
-                gl={glContext}
-                onLoad={this._onMapLoad}
+      <WithKeplerUI>
+        {({Icons}) => (
+          <>
+            <div id="deck-canvas" style={containerStyle}>
+              <DeckGL
+                ref={this.deckRef}
+                viewState={viewState}
+                id="hubblegl-overlay"
+                layers={this.createLayers()}
+                style={deckStyle}
+                controller={true}
+                glOptions={{stencil: true}}
+                onWebGLInitialized={gl => this.setState({glContext: gl})}
+                onViewStateChange={setViewState}
+                // onClick={visStateActions.onLayerClick}
+                {...adapter.getProps({deckRef: this.deckRef, setReady: () => {}})}
+              >
+                {glContext && (
+                  <StaticMap
+                    ref={this.mapRef}
+                    mapStyle={mapStyle}
+                    preventStyleDiffing={true}
+                    gl={glContext}
+                    onLoad={this._onMapLoad}
+                  />
+                )}
+              </DeckGL>
+              <div id="timeline-controls" style={timelineControlStyle}>
+                <Icons.Play style={timelinePlayButtonStyle} onClick={handlePreviewVideo} />
+              </div>
+            </div>
+            {rendering && (
+              <RenderingSpinner
+                rendering={rendering}
+                width={exportVideoWidth}
+                height={this._getContainerHeight()}
+                adapter={adapter}
+                durationMs={durationMs}
               />
             )}
-          </DeckGL>
-        </div>
-        {rendering && (
-          <RenderingSpinner
-            rendering={rendering}
-            width={exportVideoWidth}
-            height={this._getContainerHeight()}
-            adapter={adapter}
-            durationMs={durationMs}
-          />
+          </>
         )}
-      </>
+      </WithKeplerUI>
     );
   }
 }

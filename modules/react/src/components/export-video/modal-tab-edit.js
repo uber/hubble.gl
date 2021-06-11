@@ -10,15 +10,6 @@ function EditTab({durationMs, setDuration, setCameraPreset, settingsData}) {
       {({Slider, ItemSelector}) => (
         <>
           <InputGrid rows={5}>
-            <StyledLabelCell>Ratio</StyledLabelCell>
-            <ItemSelector
-              disabled={true}
-              selectedItems={'16:9'}
-              options={['4:3', '16:9']}
-              multiSelect={false}
-              searchable={false}
-              onChange={() => {}}
-            />
             <StyledLabelCell>Duration</StyledLabelCell>
             <StyledValueCell style={{paddingLeft: '0px', paddingRight: '0px'}}>
               <SliderWrapper

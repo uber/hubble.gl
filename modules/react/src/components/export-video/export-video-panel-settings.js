@@ -41,7 +41,9 @@ function ExportVideoPanelSettings({
   frameRate,
   resolution,
   mediaType,
-  setDuration
+  setDuration,
+  handleRenderVideo,
+  rendering
 }) {
   const loadingMethods = [
     // Each entry creates new tabs with ModalTabsFactory
@@ -49,14 +51,14 @@ function ExportVideoPanelSettings({
     // label: What the text of the tab will be
     // elementType: The component to render
     {
-      id: 'export-modal-tab-edit',
-      label: 'exportVideoModal.edit',
-      elementType: EditTab
-    },
-    {
       id: 'export-modal-tab-export',
       label: 'exportVideoModal.export',
       elementType: ExportTab
+    },
+    {
+      id: 'export-modal-tab-edit',
+      label: 'exportVideoModal.edit',
+      elementType: EditTab
     }
   ];
   const getDefaultMethod = methods => (Array.isArray(methods) ? get(methods, [0]) : null);
@@ -89,6 +91,8 @@ function ExportVideoPanelSettings({
                 resolution={resolution}
                 mediaType={mediaType}
                 setCameraPreset={setCameraPreset}
+                handleRenderVideo={handleRenderVideo}
+                rendering={rendering}
               />
             )}
           </div>

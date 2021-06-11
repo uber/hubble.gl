@@ -38,6 +38,7 @@ const KeplerGl = require('kepler.gl/components').injectComponents([
   replaceLoadDataModal(),
   replaceMapControl(),
   replacePanelHeader()
+  // TODO add 4th custom factory for Hubble export modal. Replace SaveExportDropdownFactory
 ]);
 
 // Sample data

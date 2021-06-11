@@ -1,8 +1,14 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 import {estimateFileSize} from './utils';
 import {StyledLabelCell, StyledValueCell, InputGrid} from './styled-components';
-import {DEFAULT_FILENAME, FORMATS, RESOLUTIONS} from './constants';
+import {
+  DEFAULT_FILENAME,
+  DEFAULT_BUTTON_HEIGHT,
+  DEFAULT_BUTTON_WIDTH,
+  FORMATS,
+  RESOLUTIONS
+} from './constants';
 import {WithKeplerUI} from '../inject-kepler';
 
 function ExportTab({
@@ -16,11 +22,15 @@ function ExportTab({
   durationMs,
   frameRate,
   resolution,
-  mediaType
+  mediaType,
+  handleRenderVideo,
+  rendering
 }) {
+  const [aspRatio, setAspRatio] = useState('16:9');
+
   return (
     <WithKeplerUI>
-      {({Input, ItemSelector}) => (
+      {({Input, ItemSelector, Button}) => (
         <>
           <InputGrid rows={5}>
             <StyledLabelCell>File Name</StyledLabelCell>
@@ -39,10 +49,26 @@ function ExportTab({
               searchable={false}
               onChange={setMediaType}
             />
-            <StyledLabelCell>Resolution</StyledLabelCell>
+            <StyledLabelCell>Aspect Ratio</StyledLabelCell>
+            <ItemSelector
+              selectedItems={aspRatio}
+              options={['4:3', '16:9']}
+              multiSelect={false}
+              searchable={false}
+              onChange={ratio => {
+                setAspRatio(ratio);
+                if (aspRatio === '4:3') {
+                  settingsData.resolution = '1280x720';
+                } else {
+                  settingsData.resolution = '1280x960';
+                }
+                setResolution(settingsData.resolution);
+              }}
+            />
+            <StyledLabelCell>Quality</StyledLabelCell>
             <ItemSelector
               selectedItems={getSelectedItems(RESOLUTIONS, settingsData.resolution)}
-              options={RESOLUTIONS}
+              options={RESOLUTIONS.filter(o => o.aspectRatio === aspRatio)}
               getOptionValue={getOptionValue}
               displayOption={displayOption}
               multiSelect={false}
@@ -53,6 +79,15 @@ function ExportTab({
             <StyledValueCell>
               ~{estimateFileSize(frameRate, resolution, durationMs, mediaType)}
             </StyledValueCell>
+            <Button
+              width={DEFAULT_BUTTON_WIDTH}
+              height={DEFAULT_BUTTON_HEIGHT}
+              className={'export-video-button'}
+              onClick={handleRenderVideo}
+              disabled={rendering}
+            >
+              Render
+            </Button>
           </InputGrid>
         </>
       )}
