@@ -82,7 +82,7 @@ export default class DeckAdapter {
 
     props.width = this.scene.width;
     props.height = this.scene.height;
-    // props._timeline = this.scene.timeline; TODO: uncomment when shipped in deck.
+    props._timeline = this.scene.timeline;
 
     if (this.glContext) {
       props.gl = this.glContext;
