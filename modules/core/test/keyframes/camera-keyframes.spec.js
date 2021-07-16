@@ -62,9 +62,9 @@ const TEST_CASES = [
       }
     },
     transition: {
-      0.25: {bearing: 0, pitch: 5, longitude: -122.4017, latitude: 37.78297, zoom: 7.518116},
-      0.5: {bearing: 0, pitch: 10, longitude: -106.3, latitude: 38.76683, zoom: 3.618313},
-      0.75: {bearing: 0, pitch: 15, longitude: -74.19253, latitude: 40.68864, zoom: 6.522422}
+      0.25: {longitude: -122.4184, latitude: 37.78194, zoom: 7.210047, bearing: 0, pitch: 5},
+      0.5: {longitude: -106.3, latitude: 38.76683, zoom: 3.003175, bearing: 0, pitch: 10},
+      0.75: {longitude: -74.12596, latitude: 40.69257, zoom: 6.212863, bearing: 0, pitch: 15}
     }
   }
 ];

@@ -24,7 +24,9 @@ import {lerp} from '@math.gl/core';
 const LINEARLY_INTERPOLATED_PROPS = ['bearing', 'pitch'];
 const DEFAULT_OPTS = {
   speed: 1.2,
-  curve: 1.414
+  // curve: 1.414
+  // curve: Math.pow(6, 0.25)
+  curve: 1.75
   // screenSpeed and maxDuration are used only if specified
 };
 
