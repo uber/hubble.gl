@@ -34,8 +34,8 @@ function ExportVideoPanelSettings({settings, resolution}) {
     // label: What the text of the tab will be
     // elementType: The component to render
     {
-      id: 'export-modal-tab-edit',
-      label: 'exportVideoModal.edit',
+      id: 'export-modal-tab-animation',
+      label: 'exportVideoModal.animation',
       elementType: EditTab
     },
     {

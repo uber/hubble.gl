@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {DEFAULT_ROW_GAP, DEFAULT_PADDING} from './constants';
+import {DEFAULT_ROW_GAP, DEFAULT_PADDING, DEFAULT_SETTINGS_WIDTH} from './constants';
 
 export const SliderWrapper = styled.div`
   display: flex;
@@ -34,13 +34,6 @@ export const InputGrid = styled.div`
   grid-row-gap: ${DEFAULT_ROW_GAP}px;
 `;
 
-export const PanelFooterInner = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin-top: ${DEFAULT_ROW_GAP}px;
-  padding: ${DEFAULT_PADDING}px;
-`;
-
 export const ButtonGroup = styled.div`
   display: flex;
 `;
@@ -61,4 +54,19 @@ export const StyledTitle = styled.div`
   font-weight: 400;
   line-height: ${props => props.theme.lineHeight};
   padding: 0 ${DEFAULT_PADDING}px 16px ${DEFAULT_PADDING}px;
+`;
+
+export const PanelBodyInner = styled.div`
+  padding: 0 ${DEFAULT_PADDING}px;
+  padding-bottom: ${DEFAULT_PADDING}px;
+  display: grid;
+  grid-template-columns: ${props => props.exportVideoWidth}px ${DEFAULT_SETTINGS_WIDTH}px;
+  grid-template-rows: auto;
+  grid-column-gap: ${DEFAULT_ROW_GAP}px;
+  margin-bottom: ${DEFAULT_ROW_GAP}px;
+`;
+
+export const Panel = styled.div`
+  width: ${props =>
+    props.exportVideoWidth + 2 * DEFAULT_PADDING + DEFAULT_ROW_GAP + DEFAULT_SETTINGS_WIDTH}px;
 `;

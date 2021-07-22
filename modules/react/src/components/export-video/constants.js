@@ -51,39 +51,45 @@ export const FORMATS = [
 export const RESOLUTIONS = [
   {
     value: '960x540',
-    label: 'Good 16:9 (540p)',
+    label: 'Good (540p)',
     width: 960,
-    height: 540
+    height: 540,
+    aspectRatio: '16:9'
   },
   {
     value: '1280x720',
-    label: 'High 16:9 (720p)',
+    label: 'High (720p)',
     width: 1280,
-    height: 720
+    height: 720,
+    aspectRatio: '16:9'
   },
   {
     value: '1920x1080',
-    label: 'Highest 16:9 (1080p)',
+    label: 'Highest (1080p)',
     width: 1920,
-    height: 1080
+    height: 1080,
+    aspectRatio: '16:9'
   },
   {
     value: '640x480',
-    label: 'Good 4:3 (480p)',
+    label: 'Good (480p)',
     width: 640,
-    height: 480
+    height: 480,
+    aspectRatio: '4:3'
   },
   {
     value: '1280x960',
-    label: 'High 4:3 (960p)',
+    label: 'High (960p)',
     width: 1280,
-    height: 960
+    height: 960,
+    aspectRatio: '4:3'
   },
   {
     value: '1920x1440',
-    label: 'Highest 4:3 (1440p)',
+    label: 'Highest (1440p)',
     width: 1920,
-    height: 1440
+    height: 1440,
+    aspectRatio: '4:3'
   }
 ];
 
@@ -95,5 +101,19 @@ export function getResolutionSetting(value) {
 
 export const deckStyle = {
   width: '100%',
-  height: '100%'
+  height: '100%',
+  position: 'relative'
+};
+
+export const timelineControlStyle = {
+  position: 'relative',
+  display: 'flex',
+  justifyContent: 'center'
+};
+
+export const timelinePlayButtonStyle = {
+  cursor: 'pointer',
+  height: '50px',
+  width: '50px',
+  fill: '#FFF'
 };

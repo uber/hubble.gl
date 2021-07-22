@@ -19,18 +19,12 @@
 // THE SOFTWARE.
 
 import React from 'react';
-import styled, {withTheme} from 'styled-components';
-import {PanelCloseInner, StyledTitle} from './styled-components';
+import {withTheme} from 'styled-components';
+import {PanelCloseInner, StyledTitle, PanelBodyInner, Panel} from './styled-components';
 
-import {
-  DEFAULT_PADDING,
-  DEFAULT_ICON_BUTTON_HEIGHT,
-  DEFAULT_ROW_GAP,
-  DEFAULT_SETTINGS_WIDTH
-} from './constants';
+import {DEFAULT_ICON_BUTTON_HEIGHT} from './constants';
 import ExportVideoPanelSettings from './export-video-panel-settings';
 import {ExportVideoPanelPreview} from './export-video-panel-preview'; // Not yet part of standard library. TODO when updated
-import ExportVideoPanelFooter from './export-video-panel-footer';
 
 import {WithKeplerUI} from '../inject-kepler';
 
@@ -45,14 +39,6 @@ const PanelClose = ({handleClose}) => (
     )}
   </WithKeplerUI>
 );
-
-const PanelBodyInner = styled.div`
-  padding: 0 ${DEFAULT_PADDING}px;
-  display: grid;
-  grid-template-columns: ${props => props.exportVideoWidth}px ${DEFAULT_SETTINGS_WIDTH}px;
-  grid-template-rows: auto;
-  grid-column-gap: ${DEFAULT_ROW_GAP}px;
-`;
 
 const PanelBody = ({
   exportVideoWidth,
@@ -82,14 +68,10 @@ const PanelBody = ({
       mapboxLayerBeforeId={mapboxLayerBeforeId}
     />
     <ExportVideoPanelSettings settings={settings} resolution={resolution} />
+    {/* TODO put div for play */}
     {/* TODO: inject additional keyframing tools here */}
   </PanelBodyInner>
 );
-
-const Panel = styled.div`
-  width: ${props =>
-    props.exportVideoWidth + 2 * DEFAULT_PADDING + DEFAULT_ROW_GAP + DEFAULT_SETTINGS_WIDTH}px;
-`;
 
 const ExportVideoPanel = ({
   // UI Props
@@ -132,11 +114,6 @@ const ExportVideoPanel = ({
         deckProps={deckProps}
         staticMapProps={staticMapProps}
         mapboxLayerBeforeId={mapboxLayerBeforeId}
-      />
-      <ExportVideoPanelFooter
-        handlePreviewVideo={handlePreviewVideo}
-        handleRenderVideo={handleRenderVideo}
-        rendering={rendering}
       />
     </Panel>
   );
