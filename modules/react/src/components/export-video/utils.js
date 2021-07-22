@@ -114,7 +114,9 @@ const COMPRESSION_RATIO = 0.8;
 const BIT_DEPTH = 6;
 
 /**
- * Estimates file size of resulting animation
+ * Estimates file size of resulting animation. All formulas are approximations
+ * created with small sample of animations on default NY taxi trips data and
+ * based off hubble's default framerate and the bitrate/depth of 3rd party encoders
  * @param {number} frameRate frame rate of animation (set by developer)
  * @param {array} resolution [width, height] of animation
  * @param {number} durationMs duration of animation (set by developer)
@@ -122,14 +124,34 @@ const BIT_DEPTH = 6;
  * @returns {string} size in MB
  */
 export function estimateFileSize(frameRate, resolution, durationMs, mediaType) {
-  // Based off of https://www.youtube.com/watch?v=DDcYvesZsnw for uncompressed video
-  // Formula: ((horizontal * vertical * bit depth) / (8 * 1024 * 1024 [convert to megabyte MB])) * (frame rate * time in seconds) * compression ratio
-  // Additional resource https://stackoverflow.com/questions/27559103/video-size-calculation
-  // TODO Read resource from Imgur dev https://stackoverflow.com/questions/23920098/how-to-estimate-gif-file-size
+  const seconds = Math.floor(durationMs / 1000);
   if (mediaType === 'gif') {
-    const seconds = Math.floor(durationMs / 1000);
+    // Based off of https://www.youtube.com/watch?v=DDcYvesZsnw for uncompressed video
+    // Formula: ((horizontal * vertical * bit depth) / (8 * 1024 * 1024 [convert to megabyte MB])) * (frame rate * time in seconds) * compression ratio
+    // Additional resource https://stackoverflow.com/questions/27559103/video-size-calculation
     return `${Math.floor(
       ((resolution[0] * resolution[1] * BIT_DEPTH) / MB) * (frameRate * seconds) * COMPRESSION_RATIO
+    )} MB`;
+  }
+  if (mediaType === 'webm') {
+    // Formula: multiplier (arbitrary unit created by analyzing bitrate of outputs) * Mb (megabit) * seconds * .125 (conversion from bit to byte)
+    // frameRate determines Mb/s in animations with a lot of movement at 720p. Multiply by seconds and convert to MB (megabyte)
+    return `${Math.ceil((resolution[0] / 1280) * frameRate * seconds * 0.125)} MB`;
+  }
+  if (mediaType === 'png') {
+    // Note: Adds one frame to size to account for an extra frame when exporting to pictures.
+    return `${Math.floor(
+      ((resolution[0] * resolution[1] * BIT_DEPTH) / MB) *
+        ((frameRate + 1) * seconds) *
+        COMPRESSION_RATIO
+    )} MB`;
+  }
+  if (mediaType === 'jpeg') {
+    // Note: Adds one frame to size to account for an extra frame when exporting to pictures.
+    return `${Math.floor(
+      ((resolution[0] * resolution[1] * BIT_DEPTH) / MB) *
+        ((frameRate + 1) * seconds) *
+        (COMPRESSION_RATIO - 0.4)
     )} MB`;
   }
   return 'Size estimation unavailable';
